@@ -1,0 +1,22 @@
+ .brandLogo{
+    width: 3.1rem;
+    border-radius: 1.1rem;
+
+} 
+.ad{
+    background-color: yellowgreen;
+   
+}
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.myImages{
+    background-image: url("/image/Background-2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
