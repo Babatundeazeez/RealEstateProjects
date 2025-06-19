@@ -86,14 +86,16 @@ const verificationAccount = async(token) =>{
         // setVerifyData(error.response.data)
         // console.log(error.response.data.message);
         // console.log(error);
-        
-        
     }
     finally{
         setVerifyAccount(false)
     }
 
 }
+///////verification ends here /////////////////////////
+
+
+
    
 
 
@@ -106,7 +108,8 @@ const verificationAccount = async(token) =>{
         isAuthenticate,
         verificationAccount,
         verifyData,
-        verifyAccount
+        verifyAccount,
+        
 
        
     }

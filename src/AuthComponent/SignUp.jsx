@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
+
 import {yupResolver} from '@hookform/resolvers/yup'
 import Button from '../FirstComponenets/Button'
 import {useForm} from 'react-hook-form'
 import * as yup from "yup"
-import { authContext } from '../ContextComponent/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -12,8 +11,9 @@ import { toast } from 'react-toastify'
 
 const SignUpSchema = yup.object({
     email : yup.string().email("Enter a valid Email Address").required("Email is required"),
-    name : yup.string().required("Name is required").min(3, "Name must atleast minimum of 3 character").max(20, "Name can be more than 50 character in lenght"),
-    password : yup.string().required("Password is required").min(6, "Password must be at least 6 character")
+    name : yup.string().required("Name is required").min(3, "Name must atleast minimum of 3 character").max(50, "Name can be more than 50 character in lenght"),
+    password : yup.string().required("Password is required").min(6, "Password must be at least 6 character"),
+    confirmPassword : yup.string().required("password is required").oneOf([yup.ref("password")], "password must match")
 
 })
 
@@ -25,15 +25,13 @@ const SignUp = () => {
     
    })
 
-   //const [signUpForm, setSignUpForm] = useState()
 
-  //const {submitForm, setSignUpForm} = useContext(authContext)
   const userUrl = import.meta.env.VITE_User_URL
 
   const submitForm = async (data) =>{
    
     try {
-                const res = await fetch(`${userUrl}`, {
+                const res = await fetch(`${userUrl}/auth/signUp`, {
                     method : "POST",
                     headers : {
                         "Content-Type" : "application/json"
@@ -45,7 +43,7 @@ const SignUp = () => {
                 if(res.ok){
                     alert("SignUp successfully, Please check your email to verify your account")
                     toast.success('Sign Up successfully, please check you email to verify your account')
-                    navigate("/signIn")
+                    navigate("/verify")
                     reset()
 
                     
@@ -107,6 +105,11 @@ const SignUp = () => {
                 <label className='form-label mt-2' htmlFor="password">Password:</label>
                 <input className='form-control' type="password" id='password' placeholder='Enter your password' {...register("password")} />
                 <p style={{color: "red"}}>{errors.password && errors.password.message}</p>
+            </div>
+            <div className='mt-2'>
+                <label className='form-label' htmlFor="password">Confirm Password :</label>
+                <input className='form-control' type="password" id='confirmPassword' placeholder='enter confirm password' {...register("confirmPassword")} />
+                <p>{errors.confirmPassword && errors.confirmPassword.message}</p>
             </div>
 
            <div className='mt-2'>
