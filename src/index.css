@@ -18,5 +18,23 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
+    
+    
+}
+/* .card1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 3px;
+} */
+/* .cards{
+    border: 1px solid grey;
+    width: 500px;
+    padding: 5px;
+} */
+.heads{
+    display: flex;
+    justify-content: space-around; 
+    padding: 10px;
+
 }

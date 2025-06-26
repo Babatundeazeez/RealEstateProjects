@@ -4,7 +4,8 @@ import Button from '../FirstComponenets/Button'
 import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../ContextComponent/AuthContext'
 
 
 const signInSchema = yup.object({
@@ -22,7 +23,10 @@ const SignIn = () => {
     
 
     const signInUrl = import.meta.env.VITE_User_URL
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    // const location = useLocation()
+    // const from = location.state?.from?.pathname || "/dashboard";
+    // const {myLogin} = useAuth()
 
     const formSubmit = async(data) =>{
             console.log(data);
@@ -40,15 +44,17 @@ const SignIn = () => {
                const { message, accessToken, status} = await res.json()
                console.log(status);
                if (status === "success"){
-                alert("sign In successfully, please proceed to dashboard")
-                toast.success(message)
+                alert("sign In successfully,")
+               // toast.success(message)
                 localStorage.setItem("AccessToken", accessToken)
-                navigate('/dashboard')
+              //  myLogin(res.data.user)
+              //  navigate(from, {replace : true})
 
                }
                 
             } catch (error) {
                 console.log(error);
+                alert("InValid Login")
                 
             }
             

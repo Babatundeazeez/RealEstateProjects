@@ -1,17 +1,44 @@
-import { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
 import axios from 'axios'
 import { toast } from "react-toastify"
 
 
 export const authContext = createContext()
+export const useAuth = () => useContext(authContext)
+
 const AuthProvider = ({children}) =>{
 
     const [states, setStates] = useState([])
     const [selectedState, setSelectedState] = useState("")
 
+    const [property, setProperty] = useState([])
+    const [propertyLoading, setIsPropertyLoading] = useState(false)
+
     const [verifyData, setVerifyData] = useState()
     const [verifyAccount, setVerifyAccount] = useState(false)
 
+
+    //Handle Login and Log Out 
+    // const [user, setUser] = useState( ()=>{
+    //     const savedUser = localStorage.getItem("user");
+    //     return savedUser ? JSON.parse(savedUser) : null
+    //   // JSON.parse(localStorage.getItem("user")) || null
+
+    // })
+
+    // const myLogin = (userData) =>{
+    //         setUser(userData);
+    //         localStorage.setItem("user", JSON.stringify(userData))
+    // }
+    // const logOut = () =>{
+    //     setUser(null);
+    //     localStorage.removeItem("user")
+    // }
+
+
+
+
+    //////////////////////////////////////////////////////////////
     const handleChange = (e) =>{
         setSelectedState(e.target.value);
     }
@@ -35,6 +62,25 @@ const AuthProvider = ({children}) =>{
         }
     }
 ///////////////////////////////////////////////////////////////////
+
+const propertyFile = import.meta.env.VITE_Property_URL
+    const propertyDisplay = async() =>{
+        setIsPropertyLoading(true)
+        try {
+            const res = await fetch(`${propertyFile}`)
+            console.log(res);
+            const data = await res.json()
+            console.log(data);
+            setProperty(data)
+
+            
+        } catch (error) {
+            console.log("error while getting the listed property",error);
+            
+        }finally{
+            setIsPropertyLoading(false)
+        }
+    }
 ////////////////dashBoard Navigate/////////////////////////////////////////////////
 const isAuthenticate = () =>{
     const accessToken = localStorage.getItem("accessToken")
@@ -109,6 +155,12 @@ const verificationAccount = async(token) =>{
         verificationAccount,
         verifyData,
         verifyAccount,
+        property,
+        propertyDisplay,
+        propertyLoading,
+        // user,
+        // myLogin,
+        // logOut
         
 
        
