@@ -70,7 +70,7 @@ const propertyFile = import.meta.env.VITE_Property_URL
             const res = await fetch(`${propertyFile}`)
             console.log(res);
             const data = await res.json()
-            console.log(data);
+           // console.log(data);
             setProperty(data)
 
             
@@ -140,6 +140,29 @@ const verificationAccount = async(token) =>{
 }
 ///////verification ends here /////////////////////////
 
+const [disProperty, setDisProperty] = useState([])
+const [isProperty, setIsProptLoading] = useState(false)
+
+const dpropertyUrl = import.meta.env.VITE_Property_URL
+
+const addProperty = async()=>{
+    setIsProptLoading(true)
+    try {
+        const res = await axios.get(`${dpropertyUrl}`)
+        setDisProperty(res.data.myProperty)
+        console.log(res.data);
+        
+        
+    } catch (error) {
+        console.log("Failed to fetch properties",error);
+        
+    }finally{
+        setIsProptLoading(false)
+
+    }
+}
+///////////////////////////////////////////////////////////
+
 
 
    
@@ -160,7 +183,10 @@ const verificationAccount = async(token) =>{
         propertyLoading,
         // user,
         // myLogin,
-        // logOut
+        // logOut,
+        disProperty,
+        addProperty,
+        isProperty
         
 
        

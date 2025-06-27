@@ -6,7 +6,7 @@ const UserInputForm = () => {
     const {register, handleSubmit} = useForm()
 
     const userCreate = async(data) =>{
-console.log(data);
+        console.log(data);
 // const userCreate = async (data) => {
   const formData = new FormData();
   formData.append("title", data.title);
@@ -49,7 +49,7 @@ console.log(data);
                                  </div>
                                 <div className='col md-4 mb-3'>
                                         <label className='form-label' htmlFor="name">Name :</label>
-                                        <input type="text" className='form-control' placeholder='enter Name' id='text' {...register("text")} />
+                                        <input type="text" className='form-control' placeholder='enter Name' id='name' {...register("name")} />
                                 </div>
                              <div className=' col-md-4 mb-3'>
                                 <label className='form-label' htmlFor="location">Location :</label>
