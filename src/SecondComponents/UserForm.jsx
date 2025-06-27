@@ -21,7 +21,7 @@ const UserForm = () => {
             const myData = await res.json()
             console.log(myData);
             if (res.ok){
-                alert('Your request has been sent successfully')
+                alert('Your request has been sent successfully, you will recieve notification after 24hours')
             }
             
             

@@ -63,7 +63,7 @@ const SignUp = () => {
 
   return (
     <div className='container'>
-        <div className='row'>
+        <div className='row' style={{marginTop : "110px"}}>
             <div className='text-center'>
            
             <p>Kindly sign up here to get started</p>
