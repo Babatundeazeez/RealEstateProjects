@@ -16,6 +16,7 @@ const VerificationPage = () => {
     
   return (
     <div className='container'>
+        <div className='' style={{marginTop : "110px"}}>
         <h5>Welcome to verification Page</h5>
         <p>please kindly verify your account</p>
         {
@@ -30,6 +31,7 @@ const VerificationPage = () => {
                     </h3>
             )
         }
+        </div>
     </div>
   )
 }

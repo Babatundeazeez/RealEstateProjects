@@ -1,43 +1,33 @@
 import React, { useContext, useEffect } from 'react'
 import { authContext } from './AuthContext'
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from './AuthContext'
-import { toast } from 'react-toastify'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 
-const ProtectedRouter = (children) => {
 
-    // const {user} = useAuth()
-    // return user ? children  : <Navigate to="/signUp" />
+const ProtectedRouter = () => {
 
-    const {isAuthenticate} = useContext(authContext)
+    const { isAuthenticate } = useContext(authContext)
     const isAuth = isAuthenticate()
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        if(!isAuth){
-            alert("You have to be logged in")
-           // toast.warning("You have to be logged in")
-            navigate('/signUp')
+    // useEffect(() => {
+    //     if (!isAuth) {
+    //         alert("You have to be logged in")
+    //         // toast.warning("You have to be logged in")
+    //         navigate('/signUp')
+    //     }
+    // }, [isAuth, navigate])
+
+
+    // return (
+
+    //     isAuth ? <Outlet /> : null
+    // )
+        if (!isAuth){
+            alert("You have to be logged in");
+            return <Navigate to="signUp" replace />
         }
-    }, [isAuth])
-  return (
+        return <Outlet />
 
-    isAuth ? <Outlet /> : null
-            )
-
-// const {user} = useAuth();
-// const location = useLocation();
-// const allowedRoles = ["owner", "developer","agent","admin"];
-
-// if (!user) {
-//     return <Navigate to="/signIn" state={{from: location}} replace />
-    
-// }
-// if (!allowedRoles.includes(user.role?.toLowercase())) {
-//     return <Navigate to="/unauthorized" />;
-    
-// }
-// return children
 }
 
 export default ProtectedRouter

@@ -18,13 +18,18 @@ const UserInputForm = () => {
   formData.append("image", data.image[0]); // file upload
 
   try {
+    const token = localStorage.getItem("accessToken")
+
     const res = await axios.post("http://localhost:1300/api/property", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization : `Bearer ${token}`
       },
     });
 
     console.log("Created:", res.data);
+    console.log("TOKEN =>", token );
+    
     alert("Property created successfully");
   } catch (err) {
     console.error("Error:", err);
@@ -49,7 +54,7 @@ const UserInputForm = () => {
                                  </div>
                                 <div className='col md-4 mb-3'>
                                         <label className='form-label' htmlFor="name">Name :</label>
-                                        <input type="text" className='form-control' placeholder='enter Name' id='name' {...register("name")} />
+                                        <input type="text" className='form-control' placeholder='Enter Name' id='name' {...register("name")} />
                                 </div>
                              <div className=' col-md-4 mb-3'>
                                 <label className='form-label' htmlFor="location">Location :</label>

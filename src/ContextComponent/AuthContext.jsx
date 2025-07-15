@@ -11,31 +11,25 @@ const AuthProvider = ({children}) =>{
     const [states, setStates] = useState([])
     const [selectedState, setSelectedState] = useState("")
 
-    const [property, setProperty] = useState([])
-    const [propertyLoading, setIsPropertyLoading] = useState(false)
+    // const [property, setProperty] = useState([])
+    // const [propertyLoading, setIsPropertyLoading] = useState(false)
 
     const [verifyData, setVerifyData] = useState()
     const [verifyAccount, setVerifyAccount] = useState(false)
 
+    const [singleProperty, setSingleProperty] = useState([])
+    const [singlePropertyLoading, setSinglePropertyLoading] = useState(false)
 
-    //Handle Login and Log Out 
-    // const [user, setUser] = useState( ()=>{
-    //     const savedUser = localStorage.getItem("user");
-    //     return savedUser ? JSON.parse(savedUser) : null
-    //   // JSON.parse(localStorage.getItem("user")) || null
+    const [disProperty, setDisProperty] = useState([])
+    const [isProperty, setIsProptLoading] = useState(false)
 
-    // })
+    const [singleBlogContent, setSingleBlogContent] = useState([])
+    const [isBlog, setIsBlogLoading] = useState(false)
 
-    // const myLogin = (userData) =>{
-    //         setUser(userData);
-    //         localStorage.setItem("user", JSON.stringify(userData))
-    // }
-    // const logOut = () =>{
-    //     setUser(null);
-    //     localStorage.removeItem("user")
-    // }
+    
 
 
+  
 
 
     //////////////////////////////////////////////////////////////
@@ -64,23 +58,23 @@ const AuthProvider = ({children}) =>{
 ///////////////////////////////////////////////////////////////////
 
 const propertyFile = import.meta.env.VITE_Property_URL
-    const propertyDisplay = async() =>{
-        setIsPropertyLoading(true)
-        try {
-            const res = await fetch(`${propertyFile}`)
-            console.log(res);
-            const data = await res.json()
-           // console.log(data);
-            setProperty(data)
+    // const propertyDisplay = async() =>{
+    //     setIsPropertyLoading(true)
+    //     try {
+    //         const res = await fetch(`${propertyFile}`)
+    //         console.log(res);
+    //         const data = await res.json()
+    //        // console.log(data);
+    //         setProperty(data)
 
             
-        } catch (error) {
-            console.log("error while getting the listed property",error);
+    //     } catch (error) {
+    //         console.log("error while getting the listed property",error);
             
-        }finally{
-            setIsPropertyLoading(false)
-        }
-    }
+    //     }finally{
+    //         setIsPropertyLoading(false)
+    //     }
+    // }
 ////////////////dashBoard Navigate/////////////////////////////////////////////////
 const isAuthenticate = () =>{
     const accessToken = localStorage.getItem("accessToken")
@@ -140,13 +134,13 @@ const verificationAccount = async(token) =>{
 }
 ///////verification ends here /////////////////////////
 
-const [disProperty, setDisProperty] = useState([])
-const [isProperty, setIsProptLoading] = useState(false)
+/////////////This is display property function/////////////////////////////////////////
+
 
 const dpropertyUrl = import.meta.env.VITE_Property_URL
-
 const addProperty = async()=>{
     setIsProptLoading(true)
+
     try {
         const res = await axios.get(`${dpropertyUrl}`)
         setDisProperty(res.data.myProperty)
@@ -161,7 +155,56 @@ const addProperty = async()=>{
 
     }
 }
+
+
 ///////////////////////////////////////////////////////////
+
+
+const mysingleproperty = async(id) =>{
+    
+    setSinglePropertyLoading(true)
+    try {
+        const res = await axios.get(`${dpropertyUrl}/${id}`)
+        if (!res){
+            throw new Error("Failed to fetch property")
+        }
+        
+        setSingleProperty(res.data.singleProperty)
+         console.log(res.data);
+        
+        
+    } catch (error) {
+        console.log(error);
+        
+    }finally{
+        setSinglePropertyLoading(false)
+    }
+
+}
+
+//SingleblogPost///////////////////
+const blogPostURL = import.meta.env.VITE_BlogPost_Url
+
+const singlePropertyPost = async(id) =>{
+    setIsBlogLoading(true)
+    try {
+        const res = await axios.get(`${blogPostURL}/${id}`)
+        if (!res){
+            throw new Error("Failed to get blog post");
+            
+        }
+        setSingleBlogContent(res.data.singleBlogPost)
+        console.log(res.data);
+        
+    } catch (error) {
+        console.log(error);
+        
+    }finally{
+        setIsBlogLoading(false)
+    }
+
+}
+
 
 
 
@@ -178,15 +221,22 @@ const addProperty = async()=>{
         verificationAccount,
         verifyData,
         verifyAccount,
-        property,
-        propertyDisplay,
-        propertyLoading,
-        // user,
-        // myLogin,
-        // logOut,
+        // property,
+        // propertyDisplay,
+        // propertyLoading,
+        
         disProperty,
+       // getApprovedProperty,
         addProperty,
-        isProperty
+        isProperty,
+
+        mysingleproperty,
+        singleProperty,
+        singlePropertyLoading,
+
+        singlePropertyPost,
+        singleBlogContent,
+        isBlog
         
 
        

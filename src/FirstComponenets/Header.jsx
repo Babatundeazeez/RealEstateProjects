@@ -1,17 +1,25 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from './Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
+import { authContext } from '../ContextComponent/AuthContext'
 
 const Header = () => {
 
-    const register = () =>{
-        alert("Kindly register")
+    const {isAuthenticate} = useContext(authContext)
+    const isAuth = isAuthenticate()
+    const navigate = useNavigate()
+
+   
+    const logOut = () =>{
+        localStorage.removeItem("accessToken")
+        navigate("/")
         
     }
+
   return (
     
-        <nav className=' navbar navbar-expand-lg navbar-dark p-2 bg-primary fixed-top'>
+        <nav className=' navbar navbar-expand-lg navbar-dark p-1 mb-1 bg-primary fixed-top'>
 
             <div className='container-fluid'>
                 <Link to={'/'} className='navbar-brand'>
@@ -37,20 +45,26 @@ const Header = () => {
                         </li>
 
                     </ul>
-                   <div className='d-flex gap-2'>
+
+                   {
+                    isAuth ? (
+                        <div className='d-flex gap-2'>
+                            <Button text="Explore our Property" color='secondary' />
+                            <Button onClick={logOut} text="Log Out" color='info'/>
+                        </div>
+                    ) : (
+                        <div className='d-flex gap-2'>
+
                     <Link to={'/signUp'}>
                     <Button text="Sign Up" color='secondary' />
                     </Link>
                     <Link to={'/signIn'}>
                     <Button text='Sign In' color='success' />
                     </Link>
-                   {/* <button className='btn btn-secondary'>
-                    <Link to={'/signUp'}>Sign Up</Link>
-                    </button> */}
-                   {/* <button className='btn btn-info ms-2'>Sign In</button> */}
-                   {/* <Button text="Sign Up" onClick={register}  />
-                   <Button text="Sign In" color='success' onClick={()=>{alert("Welcome to our page")}} /> */}
+                  
                    </div>
+                    )
+                   }
 
                 </div>
                 

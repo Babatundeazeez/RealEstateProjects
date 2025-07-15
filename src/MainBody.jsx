@@ -3,6 +3,8 @@ import NigeriaState from './SecondComponents/NigeriaState'
 import CardComponent from './FirstComponenets/CardComponent'
 import SignUp from './AuthComponent/SignUp'
 import RentFlat from './FlatProperty/RentFlat'
+import DisplaProperty from './FlatProperty/DisplaProperty'
+import ListinProperty from './FlatProperty/ListinProperty'
 
 const MainBody = () => {
   return (
@@ -26,7 +28,9 @@ const MainBody = () => {
         </div>
         <div className='row'>
           <div className='col-sm 12'>
-          <RentFlat />
+          {/* <RentFlat /> */}
+          {/* <DisplaProperty /> */}
+          <ListinProperty />
           </div>
 
         </div>
