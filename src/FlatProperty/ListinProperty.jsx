@@ -41,13 +41,13 @@ const ListinProperty = () => {
                  approvedProperties.map((property) => (
                      
                     <div className='col-md-4 mb-4' key={property._id} data={property}>
-                        <div className="card h-100 shadow">
+                        <div className="card h-100 shadow-sm p-1 border-0 property-card">
                         <Link to={`/singleProperty/${property._id}`} className='myStyle'>
-                        {property.status === "approved" && (<span className='badge bg-success'>Verified</span>)}
+                        {property.status === "approved" && (<span className='badge bg-success p-2'>Verified</span>)}
                                 <img
                                     src={property.image}
                                     alt="imageHouse"
-                                    className="card-img-top"
+                                    className="card-img-top p-1"
                                     style={{ height: "200px", objectFit: "cover" }}
                                 />
                             <div className="card-body">
@@ -56,7 +56,7 @@ const ListinProperty = () => {
                                 <p className="card-text"><strong>Name:</strong>{property.name}</p>
                                 <p className="card-text"><strong>Description: </strong>{property.description}</p>
                                 <p><strong>Location:</strong> {property.location}</p>
-                                <p><strong>Price:</strong> ₦{property.price}</p>
+                                <p><strong>Price:</strong> ₦{property.price}.00</p>
                                 <p><strong>Contact:</strong> {property.contact}</p>
                             
                             </div>

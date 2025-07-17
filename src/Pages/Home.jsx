@@ -7,6 +7,7 @@ const Home = () => {
    <div>
     <div className=''>
     <div className='myImages position-relative'>
+      
       <div className='position-absolute top-0 start-0 w-100 h-100' style={{backgroundColor : "rgba(0,0,0,0.6)",zIndex : 1}}>
       </div>
    

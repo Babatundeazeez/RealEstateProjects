@@ -42,3 +42,55 @@
     text-decoration: none;
     color: black;
 }
+.card-img-top{
+    border-top-right-radius: 10rem;
+    border-top-left-radius: 10rem;
+}
+.post {
+    display: flex;
+    justify-content: center;
+}
+.property-card{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0 green,0 blue,0.15 alpha);
+
+}
+.footer{
+    height: 90vh;
+}
+.footer2{
+    margin-top: 300px;
+}
+
+.footerLogo{
+    width: 4.5rem;
+    /* height: 3rem; */
+    border-radius: 5rem;
+    object-fit: contain;
+    
+}
+@media (min-width : 768px){
+    .footerLogo{
+        width: 5rem;
+    }
+}
+.socialImage{
+    width: 2rem;
+    border-radius: 3rem;
+}
+.footer-link{
+    text-decoration: none;
+    color: white;
+
+}
+.footer-border{
+    border: 2px solid white;
+    width: 7rem;
+}
+.color{
+    background-color: white;
+}

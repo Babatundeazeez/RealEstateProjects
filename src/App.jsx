@@ -18,6 +18,7 @@ import Developer from './AuthComponent/Developer'
 import Agent from './AuthComponent/Agent'
 import SingleDisProperty from './FlatProperty/SingleDisProperty'
 import SingleBlogPost from './FlatProperty/SingleBlogPost'
+import FooterPage from './SecondComponents/FooterPage'
 
 
 
@@ -30,20 +31,9 @@ function App() {
     <AuthProvider>
     <Header />
     <Header2 />
+
     <Routes>
-        {/* <Route path='/dashboard' element={<ProtectedRouter />}>
-            <Route path='' element={<DashBoard />} />
-            <Route path='owner' element={<Owner />} />
-            <Route path='admin' element={<Admin />} />
-            <Route path='developer' element={<Developer />} />
-            <Route path='agent' element={<Agent />} />
-
-        </Route> */}
-        {/* <Route element={<ProtectedRouter />} >
-            <Route path='/dashboard' element={<DashBoard />} />
-
-        </Route> */}
-
+       
         <Route element={<ProtectedRouter />}>
         <Route path='/dashboard' element={<DashBoard />} />
             <Route path='/dashboard/owner' element={<Owner />} />
@@ -65,12 +55,7 @@ function App() {
       
 
      
-      {/* <Route path='/dashboard' element={<DashBoard />} /> */}
-      {/* <Route path='/dashboard' element={
-                                        <ProtectedRouter>
-                                          <DashBoard />
-                                        </ProtectedRouter>
-                                      } /> */}
+     
 
      
       
@@ -78,8 +63,8 @@ function App() {
     
     
     
-
-    <ToastContainer visibleToasts={0} position='bottom-left' />
+<FooterPage />
+    <ToastContainer visibleToasts={0} position='top-right' />
     </AuthProvider>
     </BrowserRouter>
   

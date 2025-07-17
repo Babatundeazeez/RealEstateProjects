@@ -58,14 +58,14 @@ useEffect(()=>{
         
         {
           blogLoading ? (
-            <p>Loading Blogs Post ...............</p>
+            <p className='text-center'>Loading Blogs Post ...............</p>
           ) : (
             <div className='row'>
              {
                Array.isArray(blogContent) && blogContent.length > 0 ? (
                 blogContent.map((blogs) => (
                   <div className='col-md-4  mb-4' key={blogs._id}>
-                    <div className='card h-100 shadow'>
+                    <div className='card h-100 shadow-sm border-0 property-card'>
                       <Link to={`/singleBlogPost/${blogs._id}`} className='myStyle'>
                       <img src={blogs.image} 
                       alt="blog-image"
@@ -73,11 +73,16 @@ useEffect(()=>{
                       style={{ height: "200px", objectFit: "cover" }} />
 
                       <div className='card-body'>
-                        <h2 className='card-title'><strong>Title :</strong>{blogs.title}</h2>
-                        <p className='card-text'><strong>Content :</strong>{blogs.content}</p>
-                        <hr />
-                        <p className='card-date'><strong>Date : </strong>{new Date(blogs.createdAt).toLocaleDateString()}</p>
-
+                        <h4 className='card-title'><strong>Title : </strong>{blogs.title}</h4>
+                        <p className='card-text'><strong>Content : </strong>{blogs.content.slice(0, 80)}..... <button className='btn btn-success'>Read More...... </button></p>
+                        
+                      </div>
+                      <div className='card-footer bg-transparent'>
+                      <p className='card-date'><strong>Date : </strong>{new Date(blogs.createdAt).toLocaleDateString("en-US", {
+                          year : "numeric",
+                          month : "long",
+                          day : "numeric"
+                        })}</p>
                       </div>
                       </Link>
 

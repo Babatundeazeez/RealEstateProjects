@@ -13,14 +13,14 @@ const SingleBlogPost = () => {
 
   return (
     <div className='container' style={{marginTop :"120px"}}>
-       <div className='m-auto'>
+       <div className='post'>
        <Button  text="Blog Post on Property in Nigeria"  color='primary'/>
        </div>
         {
             isBlog ? (
                 <p>Loading.................</p>
             ) : (
-                <div>
+                <div className='mt-5'>
                     {
                         singleBlogContent.lenght > 0 ? (
                             <p>No Blog Post here</p>
@@ -28,17 +28,22 @@ const SingleBlogPost = () => {
                             <div>
                                 {
                                     <div className='row justify-content-center'>
-                                        <div className='col-md-6 mb-4'>
-                                            <div className='card h-100 shadow'>
+                                        <div className='col-md-10 mb-4 '>
+                                            <div className='text-center'>
+                                            <h1 >{singleBlogContent.title}</h1>
+                                            <p className='card-date'><strong>Date :</strong>{new Date(singleBlogContent.createdAt).toLocaleDateString("en-US", {year : "numeric", month : "long", day : "numeric"})}</p>
+                                            </div>
+                                            <div className='card border rounded-3 h-100 shadow p-5 '>
                                                 <img src={singleBlogContent.image}
                                                  alt="blogImage"
                                                  style={{height : "300px", objectFit : "cover"}}
                                                  className='card-img-top' />
-                                                 <div className='card-body'>
+
+                                                 <div className='card-body mt-5'>
                                                     <h3 className='card-title'><strong>Title :</strong>{singleBlogContent.title}</h3>
                                                     <p className='card-text'><strong>Content :</strong>{singleBlogContent.content}</p>
                                                     <hr />
-                                                    <p className='card-date'><strong>Date :</strong>{new Date(singleBlogContent.createdAt).toLocaleDateString()}</p>
+                                                    
 
                                                  </div>
 

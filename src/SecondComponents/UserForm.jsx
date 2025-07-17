@@ -1,9 +1,25 @@
+import { yupResolver } from '@hookform/resolvers/yup'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import * as yup from "yup"
+
+const userFormSchema = yup.object({
+    email : yup.string().email("Enter a valid email address").required("Email is required"),
+    name : yup.string().required("Name is required")
+})
+
+
+
+
+
+
 
 const UserForm = () => {
 
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, reset, formState : {errors}} = useForm({
+        resolver : yupResolver(userFormSchema)
+    })
 
 
     const GuestUser = import.meta.env.VITE_GuestUser_Url
@@ -11,7 +27,7 @@ const UserForm = () => {
     const userSubmit = async(data) =>{
        // console.log(data);
         try {
-            const res = await fetch(`${GuestUser}`, {
+            const res = await fetch(`${GuestUser}/generalUser`, {
                 method : "POST",
                 headers : {
                     "Content-Type" :  "application/json"
@@ -22,11 +38,13 @@ const UserForm = () => {
             console.log(myData);
             if (res.ok){
                 alert('Your request has been sent successfully, you will recieve notification after 24hours')
+                toast.success("Your request has been sent successfully, you will recieve notification after 24hours")
+                reset()
             }
             
             
         } catch (error) {
-            console.log(error);
+            console.log("something went wrong",error);
             
         }
         
@@ -44,13 +62,15 @@ const UserForm = () => {
             
                             <div className='mb-3'>
                                 <label className='form-label' htmlFor="name">Name :</label>
-                                <input type="text" className='form-control' placeholder='Full Name' id='text' {...register("text")} />
+                                <input type="text" className='form-control' placeholder='Full Name' id='name' {...register("name")} />
+                                <p style={{color: "red"}}>{errors.name && errors.name.message}</p>
                             </div>
 
                           <div className='row'>
                           <div className=' col-md-6 mb-3'>
                                 <label className='form-label' htmlFor="email">Email :</label>
                                 <input className='form-control' type="email"  id="email" placeholder='Your email address' {...register("email")}/>
+                                <p style={{color: "red"}}>{errors.email && errors.email.message}</p>
                             </div>
 
                             <div className='col-md-6 mb-3'>

@@ -40,8 +40,10 @@ const SignUp = () => {
                 })
                 const result = await res.json();
                 console.log(result);
+
                 if(res.ok){
                     alert("SignUp successfully, Please check your email to verify your account")
+
                     toast.success('Sign Up successfully, please check you email to verify your account')
                     navigate("/")
                     reset()
@@ -50,11 +52,23 @@ const SignUp = () => {
                 }
                 else{
                     alert(result.message || "Sign Up failed")
+                    return;
                 }
                     
             } catch (error) {
                 console.log(error);
-               // alert("Error connecting to server")
+                
+               // alert("Something went wrong, please try again later")
+                //toast.danger("Something went wrong, please try again later")
+                console.error("Network error", error)
+                if(error?.response?.data?.msessage){
+                    alert(`Error : ${error.response.data.message}`)
+                } else if(error.message){
+                    alert(`Error : ${error.message}`)
+                }
+                else{
+                    alert("Something went wrong")
+                }
                 
             }
 

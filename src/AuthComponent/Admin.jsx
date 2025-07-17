@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import UserInputForm from './UserInputForm'
 import Button from '../FirstComponenets/Button'
 import axios from 'axios'
-import DisplaProperty from '../FlatProperty/DisplaProperty'
 import BlogContent from '../SecondComponents/BlogContent'
 
 const Admin = () => {
