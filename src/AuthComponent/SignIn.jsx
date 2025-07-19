@@ -4,9 +4,9 @@ import Button from '../FirstComponenets/Button'
 import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import { toast } from 'react-toastify'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../ContextComponent/AuthContext'
+import { Navigate,  useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import ModalComponent from '../FirstComponenets/ModalComponent'
 
 
 const signInSchema = yup.object({
@@ -24,7 +24,12 @@ const SignIn = () => {
 
     })
 
-    const [signing, setSigning] = useState(false)
+    // const [signing, setSigning] = useState(false)
+
+    const [showModals, setshowModals] = useState(false)
+    const [modalTexts, setModalTexts] = useState("")
+   const [modalStatus, setModalStatus] = useState("")
+   const [isLoading, setIsLoading] = useState(false)
     
 
     const signInUrl = import.meta.env.VITE_User_URL
@@ -32,7 +37,7 @@ const SignIn = () => {
 
     const formSubmit = async(data) =>{
             console.log(data);
-            setSigning(true)
+            setIsLoading(true)
             try {
                 const res = await fetch(`${signInUrl}/auth/signIn`,{
                     method : "POST",
@@ -47,26 +52,47 @@ const SignIn = () => {
                const { message, accessToken, status} = await res.json()
                console.log(status);
                if (status === "success"){
-                alert("sign In successfully,")
-               // toast.success(message)
+                setModalStatus("Success")
+                setModalTexts("sign In successfully")
+                setshowModals(true)
+
                 localStorage.setItem("accessToken", accessToken)
-                navigate('/dashboard')
+
+                setTimeout(()=>{
+                    setshowModals(false)
+                    navigate("/dashboard")
+                },3000)
+
+                //alert("sign In successfully,")
+               // toast.success(message)
+               // localStorage.setItem("accessToken", accessToken)
+               // navigate('/dashboard')
+
+               }
+               else{
+                setModalStatus("UnSuccessful")
+                setModalTexts("Invalid credential")
+                setshowModals(true)
 
                }
                 
             } catch (error) {
                 console.log(error);
-                alert("InValid Login")
+               // alert("InValid Login")
+                setModalStatus("UnSuccessful")
+                setModalTexts("Invalid credential")
+                setshowModals(true)
                 
             }
             finally{
-                setSigning(true)
-
+                setIsLoading(false)
             }
+           
             
     }
     
   return (
+    <div className='container-fluid page-image'>
     <div className='container'>
         <div className='row' style={{marginTop : "110px"}}>
 
@@ -96,7 +122,12 @@ const SignIn = () => {
 
            
             <div className='mt-5'>
-                <Button text='Sign In' color='success' onClick={handleSubmit(formSubmit)} />
+                <Button text='Sign In' color='success' onClick={handleSubmit(formSubmit)} loading={isLoading} />
+                <ModalComponent 
+                show={showModals}
+                onClose={()=> setshowModals(false)}
+                title={modalStatus}
+                message={modalTexts} />
             </div>
         </form>
 
@@ -108,6 +139,7 @@ const SignIn = () => {
        
         </div>
        
+    </div>
     </div>
   )
 }

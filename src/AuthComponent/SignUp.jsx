@@ -5,6 +5,8 @@ import {useForm} from 'react-hook-form'
 import * as yup from "yup"
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
+import ModalComponent from '../FirstComponenets/ModalComponent'
 
 
 
@@ -17,6 +19,8 @@ const SignUpSchema = yup.object({
 
 })
 
+
+
 const SignUp = () => {
     const navigate = useNavigate()
 
@@ -25,12 +29,21 @@ const SignUp = () => {
     
    })
 
+   const [showModal, setShowModal] = useState(false)
+   const [modalText, setModalText] = useState("")
+   const [modalStatus, setModalStatus] = useState("")
+   const [loading, setIsLoading] = useState(false)
+
+
+
 
   const userUrl = import.meta.env.VITE_User_URL
 
-  const submitForm = async (data) =>{
+  const submitForm = async (data) => {
+    setIsLoading(true)
    
     try {
+        
                 const res = await fetch(`${userUrl}/auth/signUp`, {
                     method : "POST",
                     headers : {
@@ -42,21 +55,37 @@ const SignUp = () => {
                 console.log(result);
 
                 if(res.ok){
-                    alert("SignUp successfully, Please check your email to verify your account")
+                   // alert("SignUp successfully, Please check your email to verify your account")
+                   setModalStatus("success")
+                    setModalText("SignUp successfully, Please check your email to verify your account")
+                    setShowModal(true)
 
                     toast.success('Sign Up successfully, please check you email to verify your account')
-                    navigate("/")
+                    
                     reset()
+
+                    setTimeout(()=>{
+                        setShowModal(false)
+                        navigate("/")
+                    },3000)
 
                     
                 }
                 else{
-                    alert(result.message || "Sign Up failed")
-                    return;
+                    setModalStatus("Unsuccessful")
+                    setModalText(result.message || "Sign Up failed")
+                    setShowModal(true)
+                   // alert(result.message || "Sign Up failed")
+                   // return;
                 }
                     
             } catch (error) {
-                console.log(error);
+                console.log("Network Error", error);
+
+                const message = error?.response?.data?.mesage || error.message || "Something went wrong, please try again later"
+                setModalStatus("Unsuccessful")
+                setModalText(message)
+                setShowModal(true)
                 
                // alert("Something went wrong, please try again later")
                 //toast.danger("Something went wrong, please try again later")
@@ -70,12 +99,15 @@ const SignUp = () => {
                     alert("Something went wrong")
                 }
                 
+            }finally{
+                setIsLoading(false)
             }
 
 }
   
 
   return (
+    <div className='container-fluid page-image'>
     <div className='container'>
         <div className='row' style={{marginTop : "110px"}}>
             <div className='text-center'>
@@ -142,13 +174,18 @@ const SignUp = () => {
 
            <div className='mt-2'>
             {/* <button className='btn btn-info'>register Me</button> */}
-           <Button text="register" color='info' onClick={handleSubmit(submitForm)}  />
+           <Button text="Register" color='info' onClick={handleSubmit(submitForm)} loading={loading} />
+           <ModalComponent 
+                show={showModal}
+                onClose={()=> setShowModal(false)}
+                title={modalStatus}
+                message={modalText} />
            </div>
         </form>
 
             </div>
             <div className='col-sm-4'>
-
+            
             </div>
 
         </div>
@@ -157,6 +194,7 @@ const SignUp = () => {
 
         
 
+    </div>
     </div>
   )
 }

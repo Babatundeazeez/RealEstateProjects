@@ -1,13 +1,16 @@
 import React from 'react'
 
-const CardComponent = ({title, image, description,}) => {
+const CardComponent = ({title, image, description,cardClass="",textClass=""}) => {
   return (
-    <div className='card'>
+    <div className={`card rounded shadow card-hover ${cardClass}`}>
+
         <div className='card-body'>
-          <img src={image} alt="" />
-          {/* <img  alt={title} style={{height : "200px", objectFit : "cover"}} /> */}
-            <h5 className='card-title'>{title}</h5>
-            <p className='card-text'>{description}</p>
+          <div className='d-flex justify-content-center align-items-center mb-3'>
+          {image && <img src={image} alt="image" className="imgcolor " style={{maxWidth: "50px", height: "auto"}}/>}
+          </div>
+          
+            <h5 className={`card-title d-flex justify-content-center align-items-center mb-3 ${textClass}`}>{title}</h5>
+            <p className={`card-text ${textClass}`}>{description}</p>
 
         </div>
 

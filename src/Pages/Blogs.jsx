@@ -47,7 +47,8 @@ useEffect(()=>{
 
 
   return (
-    <div className='container '>
+    <div className='container-fluid page-image'>
+    <div className='container'>
        <div style={{marginTop : "120px"}}>
        <h4 className='text-center'>Welcome to Blog page</h4>
        </div>
@@ -103,6 +104,7 @@ useEffect(()=>{
 
        </div>
        
+    </div>
     </div>
   )
 }

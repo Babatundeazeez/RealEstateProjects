@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const FooterPage = () => {
   return (
-    <div className='container-fluid bg-secondary py-5 footer text-white'>
+    <div className='container-fluid bg-secondary py-5 footer text-white flex-grow-1'>
       <div className=''>
       <div className='row '>
         <div className='col-sm-12 col-md-4 mb-4 footer2  mt-5'>
@@ -84,15 +84,16 @@ const FooterPage = () => {
           </div> 
 
         </div>
-
-      </div>
-      <div className='bg-black py-3 p-4'>
+        <div className='bg-black py-3 mt-4  '>
        <div className='container-fluid  d-flex flex-column flex-md-row justify-content-between text-center text-md-start align-items-center'>
       <div>copyright @ 2025 BabzeezReal Estate Property limited, All right reserved.</div>
        <div>Terms of use | privacy</div>
        </div>
 
       </div>
+
+      </div>
+     
 
       </div>
 

@@ -26,7 +26,8 @@ function App() {
   
 
   return (
-    <>
+    <div className='d-flex flex-column min-vh-100'>
+      <main>
     <BrowserRouter>
     <AuthProvider>
     <Header />
@@ -67,6 +68,7 @@ function App() {
     <ToastContainer visibleToasts={0} position='top-right' />
     </AuthProvider>
     </BrowserRouter>
+    </main> 
   
     
     
@@ -75,8 +77,8 @@ function App() {
   
     
       
-       
-    </>
+      
+    </div>
   )
 }
 
