@@ -40,8 +40,20 @@ const SingleBlogPost = () => {
                                                  className='card-img-top' />
 
                                                  <div className='card-body mt-5'>
-                                                    <h3 className='card-title'><strong>Title :</strong>{singleBlogContent.title}</h3>
-                                                    <p className='card-text'><strong>Content :</strong>{singleBlogContent.content}</p>
+
+                                                    <h3 className='card-title'><strong>Title: </strong>{singleBlogContent.title}</h3>
+                                                    {/* <div>
+                                                        {
+                                                            singleBlogContent.content.split('\n\n').map((parax, indexx)=>(<p key={indexx}>{parax}</p>
+
+                                                            ))
+                                                        }
+                                                    </div> */}
+                                                    {/* <div className='card-text' dangerouslySetInnerHTML={{__html:singleBlogContent.content}}>
+
+                                                    </div> */}
+                                                   
+                                                     <p className='card-text'><strong>Content :</strong>{singleBlogContent.content}</p> 
                                                     <hr />
                                                     
 

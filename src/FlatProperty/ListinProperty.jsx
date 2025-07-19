@@ -36,7 +36,7 @@ const ListinProperty = () => {
             loading ? (
                 <p>Loading Properties........</p>
             ) : (
-           <div className='row'>
+           <div className='row '>
             {
                  approvedProperties.map((property) => (
                      
@@ -50,7 +50,7 @@ const ListinProperty = () => {
                                     className="card-img-top p-1"
                                     style={{ height: "200px", objectFit: "cover" }}
                                 />
-                            <div className="card-body">
+                            <div className="card-body mt-2">
                                 <h4 className="card-title"><strong>Title: </strong>{property.title}</h4>
                                
                                 <p className="card-text"><strong>Name:</strong>{property.name}</p>

@@ -2,14 +2,16 @@
 import axios from 'axios'
 import Button from '../FirstComponenets/Button'
 import { useForm } from 'react-hook-form'
+// import { useState } from 'react'
+// import ReactQuill from "react-quill"
+// import "react-quill/dist/quill.snow.css";
 
 const BlogContent = () => {
     
      const {register, handleSubmit} = useForm()
+    //  const [richContent, setRichContent] = useState("");
 
-    // useEffect(()=>{
-    //     blogPostProperty()
-    // }, [])
+
     const blogPostURL = import.meta.env.VITE_BlogPost_Url
 
     const blogPostProperty = async(data) => {
@@ -17,7 +19,8 @@ const BlogContent = () => {
         const formData = new FormData();
         formData.append("image", data.image[0]);
         formData.append("title", data.title);
-        formData.append("content", data.content)
+        formData.append("content", data.content);
+        // formData.append("content", richContent)
         
     
     //setIsBlogLoading(true)
@@ -48,19 +51,24 @@ const BlogContent = () => {
     <div className='row'>
         
             <div className='card shadow'>
+
                 <div className='card-body'>
                     <form action="" className='form' onSubmit={handleSubmit(blogPostProperty)}>
                         <div>
                             <label className='form-label' htmlFor="image">Image :</label>
                             <input className='form-control' type="file" name="" id="image" placeholder='choose your image file' {...register("image")} />
                         </div>
+
                         <div className='mt-2'>
                             <label htmlFor="title" className='form-label'>Title :</label>
                             <input className='form-control' type="text" id='title' placeholder='Enter your title' {...register("title")} />
                         </div>
+
                         <div className='mt-2'>
                             <label htmlFor="content" className='form-label'>Content :</label>
-                            <input type="text" className='form-control' id='content' placeholder='Enter your content here' {...register("content")} />
+                            {/* <ReactQuill value={richContent} onChange={setRichContent} theme='snow' /> */}
+                            <textarea className='form-control' id="content" placeholder='Enter your content here....' {...register("content")}></textarea>
+                          
                         </div>
                         <div className='mt-2'>
                             <input className='form-control' type="date"  id="createdAt" {...register("createdAt")} />
