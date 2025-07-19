@@ -3,14 +3,11 @@ import axios from 'axios'
 import Button from '../FirstComponenets/Button'
 import { useForm } from 'react-hook-form'
 // import { useState } from 'react'
-// import ReactQuill from "react-quill"
-// import "react-quill/dist/quill.snow.css";
 
 const BlogContent = () => {
     
      const {register, handleSubmit} = useForm()
-    //  const [richContent, setRichContent] = useState("");
-
+   
 
     const blogPostURL = import.meta.env.VITE_BlogPost_Url
 
@@ -20,7 +17,7 @@ const BlogContent = () => {
         formData.append("image", data.image[0]);
         formData.append("title", data.title);
         formData.append("content", data.content);
-        // formData.append("content", richContent)
+       
         
     
     //setIsBlogLoading(true)
@@ -66,7 +63,7 @@ const BlogContent = () => {
 
                         <div className='mt-2'>
                             <label htmlFor="content" className='form-label'>Content :</label>
-                            {/* <ReactQuill value={richContent} onChange={setRichContent} theme='snow' /> */}
+                          
                             <textarea className='form-control' id="content" placeholder='Enter your content here....' {...register("content")}></textarea>
                           
                         </div>

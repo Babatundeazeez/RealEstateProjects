@@ -49,9 +49,8 @@ const SingleBlogPost = () => {
                                                             ))
                                                         }
                                                     </div> */}
-                                                    {/* <div className='card-text' dangerouslySetInnerHTML={{__html:singleBlogContent.content}}>
-
-                                                    </div> */}
+                                                   
+                                                   
                                                    
                                                      <p className='card-text'><strong>Content :</strong>{singleBlogContent.content}</p> 
                                                     <hr />

@@ -85,8 +85,7 @@ useEffect(()=>{
                         </div> */}
                         <p className='card-text'><strong>Content : </strong>{blogs.content.slice(0, 80)}..... <button className='btn btn-sm btn-outline-primary mt-2'>Read More...... </button></p>
 
-                         {/* <div  dangerouslySetInnerHTML={{__html: blogs.content.slice(0, 120) + "...."}} ></div>
-                                <button className='btn btn-sm btn-outline-primary mt-2'>Read More...</button> */}
+                       
                       </div>
                       <div className='card-footer bg-transparent'>
                       <p className='card-date'><strong>Date : </strong>{new Date(blogs.createdAt).toLocaleDateString("en-US", {
