@@ -15,16 +15,16 @@ const blogPage = async() =>{
   const blogURL = import.meta.env.VITE_BlogPost_Url
   console.log(blogURL);
   
-  const token = localStorage.getItem("accessToken")
+  const token = localStorage.getItem("accessToken")////////
   isblogLoading(true)
   try {
     const res = await axios.get(`${blogURL}`,{
       headers : {
-        Authorization : `Bearer ${token}`
+        Authorization : `Bearer ${token}`//////////////////////
       }
     })
     setBlogContent(res.data.blogPost)
-    console.log(res.data);
+    console.log("Fecth blog post",res.data);
     
     
   } catch (error) {
