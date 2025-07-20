@@ -1,9 +1,8 @@
 import React from 'react'
 import NigeriaState from './SecondComponents/NigeriaState'
 import CardComponent from './FirstComponenets/CardComponent'
-import SignUp from './AuthComponent/SignUp'
-import RentFlat from './FlatProperty/RentFlat'
-import DisplaProperty from './FlatProperty/DisplaProperty'
+
+
 import ListinProperty from './FlatProperty/ListinProperty'
 
 const MainBody = () => {
@@ -20,7 +19,7 @@ const MainBody = () => {
 
             </div>
             <div className='col-sm-6'>
-              {/* <SignUp /> */}
+             
               
             
             </div>
@@ -28,8 +27,7 @@ const MainBody = () => {
         </div>
         <div className='row'>
           <div className='col-sm 12'>
-          {/* <RentFlat /> */}
-          {/* <DisplaProperty /> */}
+        
           <ListinProperty />
           </div>
 

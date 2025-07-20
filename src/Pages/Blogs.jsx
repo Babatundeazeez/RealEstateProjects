@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import RentFlat from '../FlatProperty/RentFlat'
-import DisplaProperty from '../FlatProperty/DisplaProperty'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -52,9 +50,7 @@ useEffect(()=>{
        <div style={{marginTop : "120px"}}>
        <h4 className='text-center'>Welcome to Blog page</h4>
        </div>
-       {/* <RentFlat /> */}
-       {/* <DisplaProperty /> */}
-
+      
        <div className='row mt-5'>
         
         {

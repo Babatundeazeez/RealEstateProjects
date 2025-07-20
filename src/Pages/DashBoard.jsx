@@ -3,9 +3,9 @@ import { Link, Outlet } from 'react-router-dom'
 
 
 const DashBoard = () => {
-  const myDashBoard = () =>{
-    alert('You must sign Up before you have access to this page')
-  }
+  // const myDashBoard = () =>{
+  //   alert('You must sign Up before you have access to this page')
+  // }
   return (
     <div className='container-fluid' style={{marginTop : "110px", minHeight : "100vh"}}>
       
