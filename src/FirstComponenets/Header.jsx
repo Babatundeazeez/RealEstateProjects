@@ -30,7 +30,7 @@ const Header = () => {
 
                 <div className='collapse navbar-collapse' id='demo'>
 
-                    <ul className='navbar-nav m-auto fw-bold gap-3'>
+                    <ul className='navbar-nav m-auto fw-bold'>
                         <li className='nav-item'>
                             <Link to={'/'} className='nav-link text-white'>Home</Link>
                         </li>
