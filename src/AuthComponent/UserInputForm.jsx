@@ -19,8 +19,9 @@ const UserInputForm = () => {
 
   try {
     const token = localStorage.getItem("accessToken")
+    const propertyUrl = import.meta.env.VITE_Property_URL
 
-    const res = await axios.post("http://localhost:1300/api/property", formData, {
+    const res = await axios.post(`${propertyUrl}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization : `Bearer ${token}`
